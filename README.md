@@ -397,4 +397,3 @@ The frontend provides the user interface while the backend handles business logi
 ---
 
 Built as a practical full-stack portfolio project using **React, ASP.NET Core, .NET 9, Entity Framework Core, and SQL Server**.
-ain/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
