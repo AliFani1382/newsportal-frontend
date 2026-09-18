@@ -1,10 +1,10 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import * as authApi from "../api/authApi";
 import * as profileApi from "../api/profileApi";
+import { TOKEN_KEY, REFRESH_TOKEN_KEY } from "../api/client";
 
 export const AuthContext = createContext(null);
 
-const TOKEN_KEY = "np_token";
 const USER_KEY = "np_user";
 
 export function AuthProvider({ children }) {
@@ -25,6 +25,7 @@ export function AuthProvider({ children }) {
 
   const clearSession = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(REFRESH_TOKEN_KEY);
     persistUser(null);
   }, [persistUser]);
 
@@ -71,6 +72,7 @@ export function AuthProvider({ children }) {
       }
 
       localStorage.setItem(TOKEN_KEY, response.data.token);
+      localStorage.setItem(REFRESH_TOKEN_KEY, response.data.refreshToken);
 
       const profileResponse = await profileApi.getMyProfile();
       if (profileResponse.isSuccess) {
@@ -101,6 +103,12 @@ export function AuthProvider({ children }) {
   }, []);
 
   const logout = useCallback(() => {
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+    if (refreshToken) {
+      authApi.logout(refreshToken).catch(() => {
+        /* حتی اگر ابطال سمت سرور fail شود، سشن لوکال باید پاک شود */
+      });
+    }
     clearSession();
   }, [clearSession]);
 

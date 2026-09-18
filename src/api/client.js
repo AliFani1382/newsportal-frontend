@@ -5,27 +5,100 @@ import axios from "axios";
 export const BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "https://localhost:7285/api";
 
+// کلیدهای localStorage به‌صورت مرکزی اینجا export می‌شوند تا بقیه‌ی
+// ماژول‌ها (AuthContext و ...) رشته‌های جادویی را تکرار نکنند.
+export const TOKEN_KEY = "np_token";
+export const REFRESH_TOKEN_KEY = "np_refresh_token";
+
 export const apiClient = axios.create({
   baseURL: BASE_URL,
 });
 
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem("np_token");
+  const token = localStorage.getItem(TOKEN_KEY);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
+// وقتی چند درخواست هم‌زمان با 401 مواجه شوند، فقط یک درخواست رفرش
+// واقعی به سرور می‌زنیم؛ بقیه منتظر نتیجه‌ی همان یکی می‌مانند.
+let isRefreshing = false;
+let waiters = [];
+
+function clearAuthStorage() {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
+  localStorage.removeItem("np_user");
+}
+
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("np_token");
-      localStorage.removeItem("np_user");
-      window.dispatchEvent(new Event("np-auth-expired"));
+  async (error) => {
+    const originalRequest = error.config;
+    const status = error.response?.status;
+    const isAuthRoute = originalRequest?.url?.includes("/auth/");
+
+    // اگر خطا 401 نیست، یا خود درخواست auth بوده (لاگین/رفرش/ثبت‌نام)،
+    // یا این درخواست قبلاً یک‌بار retry شده، مسیر قدیمی: سشن را پاک کن.
+    if (status !== 401 || isAuthRoute || originalRequest?._retry) {
+      if (status === 401) {
+        clearAuthStorage();
+        window.dispatchEvent(new Event("np-auth-expired"));
+      }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
+
+    const storedRefreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+    if (!storedRefreshToken) {
+      clearAuthStorage();
+      window.dispatchEvent(new Event("np-auth-expired"));
+      return Promise.reject(error);
+    }
+
+    originalRequest._retry = true;
+
+    // یک رفرش دیگر در حال انجام است؛ منتظر نتیجه‌اش بمان
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        waiters.push((newToken) => {
+          if (!newToken) {
+            reject(error);
+            return;
+          }
+          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          resolve(apiClient(originalRequest));
+        });
+      });
+    }
+
+    isRefreshing = true;
+
+    try {
+      const res = await axios.post(`${BASE_URL}/auth/refresh`, {
+        refreshToken: storedRefreshToken,
+      });
+
+      const { token, refreshToken } = res.data.data;
+      localStorage.setItem(TOKEN_KEY, token);
+      localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+
+      waiters.forEach((resolveWaiter) => resolveWaiter(token));
+      waiters = [];
+
+      originalRequest.headers.Authorization = `Bearer ${token}`;
+      return apiClient(originalRequest);
+    } catch (refreshError) {
+      waiters.forEach((resolveWaiter) => resolveWaiter(null));
+      waiters = [];
+
+      clearAuthStorage();
+      window.dispatchEvent(new Event("np-auth-expired"));
+      return Promise.reject(refreshError);
+    } finally {
+      isRefreshing = false;
+    }
   },
 );
 

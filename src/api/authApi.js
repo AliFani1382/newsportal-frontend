@@ -13,3 +13,11 @@ export function login({ usernameOrEmail, password }) {
     .post("/auth/login", { usernameOrEmail, password })
     .then((res) => res.data);
 }
+
+export function refreshAccessToken(refreshToken) {
+  return apiClient.post("/auth/refresh", { refreshToken }).then((r) => r.data);
+}
+
+export function logout(refreshToken) {
+  return apiClient.post("/auth/logout", { refreshToken }).then((r) => r.data);
+}
