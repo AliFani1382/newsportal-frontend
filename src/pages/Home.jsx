@@ -30,9 +30,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // اگر از هدر (جستجو یا دسته‌بندی) با query string وارد این صفحه شویم
-  // (یا حتی وقتی همین صفحه باز است و هدر لینک جدیدی می‌زند)، فیلترها را
-  // با پارامترهای URL هماهنگ می‌کنیم؛ منطق واکشی داده تغییری نکرده است.
   useEffect(() => {
     const q = searchParams.get("q") || "";
     const catId = searchParams.get("categoryId") || "";
@@ -43,14 +40,12 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.toString()]);
 
-  // دسته‌ها، شهرها، ویژه‌ها و پربازدیدترین‌ها فقط یک‌بار در بارگذاری اولیه واکشی می‌شوند
   useEffect(() => {
     getAllCategories()
       .then((res) => {
         if (res.isSuccess) setCategories(res.data);
       })
       .catch(() => {
-        /* عدم موفقیت در بارگذاری فیلتر دسته‌ها نباید کل صفحه را از کار بیندازد */
       });
 
     getAllCities()
@@ -58,7 +53,6 @@ export default function Home() {
         if (res.isSuccess) setCities(res.data);
       })
       .catch(() => {
-        /* عدم موفقیت در بارگذاری فیلتر شهرها نباید کل صفحه را از کار بیندازد */
       });
 
     getFeaturedNews(4)
@@ -66,7 +60,6 @@ export default function Home() {
         if (res.isSuccess) setFeaturedNews(res.data);
       })
       .catch(() => {
-        /* بخش اختیاری؛ خطا نباید کل صفحه را مختل کند */
       });
 
     getPopularNews(5)
@@ -74,7 +67,6 @@ export default function Home() {
         if (res.isSuccess) setPopularNews(res.data);
       })
       .catch(() => {
-        /* بخش اختیاری؛ خطا نباید کل صفحه را مختل کند */
       });
   }, []);
 
@@ -106,8 +98,6 @@ export default function Home() {
     setSearch(searchInput.trim());
   };
 
-  // آیتم‌های تازه‌ترین اخبار (صفحه‌ی اول، بدون فیلتر) برای هدر بزرگ و نوار
-  // تیتر؛ در نبود دسته‌بندی/جستجوی فعال، همان newsResult فعلی استفاده می‌شود.
   const isDefaultView =
     !categoryId && !cityId && !search && pageNumber === 1;
   const heroItems =

@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import { getNewsCoverImage } from "../api/imageUrl";
 
-// یک خلاصه‌ی کوتاه از متن کامل خبر می‌سازد؛ چون DTO بک‌اند فیلد جداگانه‌ای
-// برای "خلاصه" ندارد (فقط content کامل را برمی‌گرداند)، این یک برش
-// سمت فرانت از همان محتواست، نه یک فیلد summary واقعی از بک‌اند.
 function buildExcerpt(content, max = 110) {
   if (!content) return "";
   const flat = content.replace(/\s+/g, " ").trim();

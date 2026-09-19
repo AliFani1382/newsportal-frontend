@@ -18,7 +18,6 @@ export default function BookmarkButton({ newsId }) {
         if (res.isSuccess) setBookmarked(res.data.isBookmarked);
       })
       .catch(() => {
-        /* خطای دریافت وضعیت بوکمارک نباید کل صفحه را از کار بیندازد */
       })
       .finally(() => setIsLoading(false));
   }, [newsId, isAuthenticated]);
@@ -35,7 +34,6 @@ export default function BookmarkButton({ newsId }) {
         if (res.isSuccess) setBookmarked(true);
       }
     } catch {
-      /* خطای موقت شبکه؛ کاربر می‌تواند دوباره کلیک کند */
     } finally {
       setIsSaving(false);
     }

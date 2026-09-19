@@ -1,12 +1,8 @@
 import axios from "axios";
 
-// تنها منبع Base URL در کل پروژه — هیچ جای دیگری نباید این مقدار را
-// دوباره تعریف کند (سایر ماژول‌ها baseURL/origin را از همین‌جا می‌گیرند).
 export const BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "https://localhost:7285/api";
 
-// کلیدهای localStorage به‌صورت مرکزی اینجا export می‌شوند تا بقیه‌ی
-// ماژول‌ها (AuthContext و ...) رشته‌های جادویی را تکرار نکنند.
 export const TOKEN_KEY = "np_token";
 export const REFRESH_TOKEN_KEY = "np_refresh_token";
 
@@ -22,8 +18,6 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-// وقتی چند درخواست هم‌زمان با 401 مواجه شوند، فقط یک درخواست رفرش
-// واقعی به سرور می‌زنیم؛ بقیه منتظر نتیجه‌ی همان یکی می‌مانند.
 let isRefreshing = false;
 let waiters = [];
 
@@ -40,8 +34,6 @@ apiClient.interceptors.response.use(
     const status = error.response?.status;
     const isAuthRoute = originalRequest?.url?.includes("/auth/");
 
-    // اگر خطا 401 نیست، یا خود درخواست auth بوده (لاگین/رفرش/ثبت‌نام)،
-    // یا این درخواست قبلاً یک‌بار retry شده، مسیر قدیمی: سشن را پاک کن.
     if (status !== 401 || isAuthRoute || originalRequest?._retry) {
       if (status === 401) {
         clearAuthStorage();
@@ -59,7 +51,6 @@ apiClient.interceptors.response.use(
 
     originalRequest._retry = true;
 
-    // یک رفرش دیگر در حال انجام است؛ منتظر نتیجه‌اش بمان
     if (isRefreshing) {
       return new Promise((resolve, reject) => {
         waiters.push((newToken) => {
@@ -102,9 +93,6 @@ apiClient.interceptors.response.use(
   },
 );
 
-// پیام‌های پیش‌فرض بر اساس کد وضعیت HTTP، برای زمانی که پاسخ خطا
-// ساختار ApiResponse استاندارد (message/errors) را ندارد — مثلاً پاسخ
-// خالی از میان‌افزار Authorization یا از RateLimiter.
 const STATUS_FALLBACK_MESSAGES = {
   400: "درخواست نامعتبر است.",
   401: "برای انجام این عملیات باید وارد حساب کاربری خود شوید.",

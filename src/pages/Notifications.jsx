@@ -37,7 +37,6 @@ export default function Notifications() {
         prev.map((n) => (n.id === id ? { ...n, isRead: true } : n)),
       );
     } catch {
-      /* خطای جزئی؛ نیازی به نمایش خطای مسدودکننده نیست */
     }
   };
 
@@ -46,7 +45,6 @@ export default function Notifications() {
       await markAllAsRead();
       setItems((prev) => prev.map((n) => ({ ...n, isRead: true })));
     } catch {
-      /* خطای جزئی؛ نیازی به نمایش خطای مسدودکننده نیست */
     }
   };
 

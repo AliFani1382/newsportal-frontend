@@ -6,11 +6,6 @@ import { getAllTags } from "../api/tagsApi";
 import { extractErrorMessage } from "../api/client";
 import { createNews } from "../api/newsApi";
 
-// صفحهٔ ثبت خبر برای کاربر عادی (نه ادمین). برخلاف فرم ادمین:
-// - فقط امکان «ایجاد» خبر دارد، نه ویرایش/تغییر وضعیت.
-// - بعد از ثبت موفق، کاربر را به داشبورد ادمین هدایت نمی‌کند؛ به‌جای آن
-//   پیام روشنی نمایش می‌دهد که خبر او PendingReview است و منتظر تأیید
-//   ادمین می‌ماند — تا کاربر تصور نکند خبرش بلافاصله منتشر شده.
 export default function NewsSubmit() {
   const navigate = useNavigate();
 

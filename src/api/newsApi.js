@@ -50,9 +50,6 @@ export function setFeatured(id, isFeatured) {
     .then((res) => res.data);
 }
 
-// dto: { title, content, categoryId, cityId, imageFiles, tagIds }
-// imageFiles: آرایه‌ای از File (اختیاری، صفر تا چند تصویر)
-// tagIds: آرایه‌ای از شناسه عددی برچسب‌ها (اختیاری)
 function buildNewsFormData(dto) {
   const formData = new FormData();
   formData.append("title", dto.title);
@@ -90,10 +87,6 @@ export function deleteNews(id) {
   return apiClient.delete(`/news/${id}`).then((res) => res.data);
 }
 
-// نگاشت نام‌های وضعیت به مقدار عددی enum واقعی بک‌اند (NewsStatus.cs)
-// چون Program.cs کانورتر JsonStringEnumConverter را ثبت نکرده، بک‌اند
-// enum ها را به‌صورت عدد انتظار دارد، نه رشته. (در بک‌اند جدید هم بررسی
-// و تأیید شد که این هنوز صادق است.)
 const NEWS_STATUS_VALUES = {
   Draft: 0,
   PendingReview: 1,

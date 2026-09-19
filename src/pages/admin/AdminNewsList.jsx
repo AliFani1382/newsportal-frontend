@@ -36,9 +36,6 @@ export default function AdminNewsList() {
     loadNews();
   }, [loadNews]);
 
-  // توجه: چون endpoint فعلی GET /api/news پارامتر فیلتر وضعیت را از Admin
-  // نمی‌گیرد، این فیلتر فقط روی همان صفحه‌ای که از سرور آمده اعمال می‌شود
-  // (نه به‌صورت سراسری روی کل نتایج در همه صفحات).
   const visibleItems = useMemo(() => {
     if (!result?.items) return [];
     if (!statusFilter) return result.items;

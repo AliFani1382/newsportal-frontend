@@ -1,7 +1,3 @@
-// نگاشت متمرکز وضعیت‌های خبر (باید دقیقاً با enum واقعی بک‌اند
-// NewsStatus.cs هماهنگ بماند: Draft, PendingReview, Published, Rejected).
-// این فایل تنها منبع برچسب/کلاس/پیام برای وضعیت خبر در کل Frontend است
-// تا این منطق در چند کامپوننت مختلف تکرار نشود.
 
 export const NEWS_STATUS = {
   Draft: "Draft",
@@ -24,7 +20,6 @@ const STATUS_CLASSES = {
   [NEWS_STATUS.Rejected]: "status-badge status-badge--rejected",
 };
 
-// گزینه‌های قابل استفاده در select/فیلترهای پنل ادمین
 export const NEWS_STATUS_OPTIONS = [
   { value: NEWS_STATUS.Draft, label: STATUS_LABELS[NEWS_STATUS.Draft] },
   {
@@ -46,8 +41,6 @@ export function getNewsStatusClass(status) {
   return STATUS_CLASSES[status] || "status-badge";
 }
 
-// پیام اطلاع‌رسانی مناسب برای نمایش بالای صفحهٔ جزئیات خبر، وقتی خبر
-// هنوز منتشر نشده (فقط نویسنده/ادمین اصلاً اجازهٔ دیدن چنین خبری را دارند).
 export function getNewsStatusNotice(status) {
   switch (status) {
     case NEWS_STATUS.PendingReview:

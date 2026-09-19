@@ -23,10 +23,6 @@ export default function VerifyEmail() {
 
     verifyEmail(token)
       .then((res) => {
-        // بک‌اند اکنون ApiResponse<VerifyEmailResponseDto> برمی‌گرداند
-        // (res.data.isVerified === true در صورت موفقیت). موفقیت همچنان
-        // از روی isSuccess تشخیص داده می‌شود؛ res.data?.isVerified هم
-        // در صورت نیاز به بررسی دقیق‌تر در دسترس است.
         if (res.isSuccess) {
           setStatus("success");
         } else {

@@ -10,7 +10,6 @@ export default function ShareButton({ title, url }) {
       try {
         await navigator.share({ title, url: shareUrl });
       } catch {
-        // کاربر اشتراک‌گذاری را لغو کرده یا خطایی رخ داده — نیازی به نمایش خطا نیست
       }
       return;
     }
@@ -20,7 +19,6 @@ export default function ShareButton({ title, url }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // اگر کلیپ‌بورد هم در دسترس نبود، کاری از دست فرانت برنمی‌آید
     }
   };
 

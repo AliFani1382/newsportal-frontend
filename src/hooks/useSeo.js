@@ -14,10 +14,6 @@ function setMetaTag(name, content, attr = "name") {
   tag.setAttribute("content", content);
 }
 
-/**
- * تنظیم عنوان صفحه و متادیتای سئو برای هر صفحه.
- * @param {{ title?: string, description?: string, image?: string }} options
- */
 export function useSeo({ title, description, image } = {}) {
   useEffect(() => {
     document.title = title ? `${title} | پورتال خبری` : DEFAULT_TITLE;

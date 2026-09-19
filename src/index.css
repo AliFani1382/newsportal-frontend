@@ -1,13 +1,5 @@
-/* =====================================================================
-   NewsPortal — Design System
-   الهام‌گرفته از ساختار و سلسله‌مراتب بصری سایت‌های خبری معتبر فارسی‌زبان
-   (نظیر BBC فارسی)، اما با هویت بصری اختصاصی. رنگ اصلی برند (قرمز آجری)
-   دقیقاً همان رنگی است که پیش از این برای خطاها/حالت فعال در پروژه
-   استفاده می‌شد (#b3261e) تا هماهنگی بصری با کامپوننت‌های موجود حفظ شود.
-   ===================================================================== */
 
 :root {
-  /* --- Brand & semantic colors --- */
   --np-brand: #b3261e;
   --np-brand-dark: #8f1e18;
   --np-brand-tint: #fdf1f0;
@@ -26,10 +18,8 @@
   --np-info: #0f5fa8;
   --np-info-tint: #eaf3fb;
 
-  /* --- Typography --- */
   --np-font: "Vazirmatn", Tahoma, "Segoe UI", system-ui, sans-serif;
 
-  /* --- Layout --- */
   --np-container: 1240px;
   --np-radius-sm: 6px;
   --np-radius: 10px;
@@ -120,7 +110,6 @@ hr {
   border: 0;
 }
 
-/* --- Generic button reset & default skin --- */
 button {
   cursor: pointer;
   font-family: inherit;
@@ -146,7 +135,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Primary call-to-action buttons across plain forms (search, auth, comments…) */
 .home-filters button,
 .auth-form button,
 .comment-form button,
@@ -187,10 +175,6 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* =====================================================================
-   Shell / Layout
-   ===================================================================== */
-
 .app-shell {
   min-height: 100vh;
   display: flex;
@@ -204,10 +188,6 @@ a:focus-visible {
   margin: 0 auto;
   padding: 1.75rem 1rem 3rem;
 }
-
-/* =====================================================================
-   Header
-   ===================================================================== */
 
 .site-header {
   position: sticky;
@@ -334,7 +314,6 @@ a:focus-visible {
   margin-inline-start: 0.3rem;
 }
 
-/* Secondary strip: category quick-navigation */
 .site-header__categories {
   border-top: 1px solid var(--np-line);
   background: var(--np-surface-alt);
@@ -401,10 +380,6 @@ a:focus-visible {
   }
 }
 
-/* =====================================================================
-   Footer
-   ===================================================================== */
-
 .site-footer {
   margin-top: 3rem;
   padding: 2.5rem 1rem 2rem;
@@ -441,10 +416,6 @@ a:focus-visible {
   flex: 1;
   padding: 0.6rem 0.8rem;
 }
-
-/* =====================================================================
-   Shared section header pattern (used on Home)
-   ===================================================================== */
 
 .section {
   margin: 2.5rem 0;
@@ -485,17 +456,11 @@ a:focus-visible {
   white-space: nowrap;
 }
 
-/* =====================================================================
-   Home page
-   ===================================================================== */
-
 .home-page {
   display: flex;
   flex-direction: column;
 }
 
-/* Latest-headlines ticker (a lightweight, honestly-labeled strip built
-   from the same "latest news" data — not a separate breaking-news API) */
 .ticker {
   display: flex;
   align-items: center;
@@ -541,7 +506,6 @@ a:focus-visible {
   text-decoration: underline;
 }
 
-/* Hero block: main story + secondary stories */
 .home-hero {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
@@ -579,7 +543,6 @@ a:focus-visible {
   color: var(--np-muted);
 }
 
-/* Two-column main layout: content + sidebar (popular/categories widgets) */
 .home-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
@@ -641,7 +604,6 @@ a:focus-visible {
   color: #fff;
 }
 
-/* Filters bar (search / category / city) above the main listing */
 .home-filters {
   display: flex;
   flex-wrap: wrap;
@@ -664,7 +626,6 @@ a:focus-visible {
   padding: 0.6rem 0.85rem;
 }
 
-/* --- News grid / cards --- */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -762,7 +723,6 @@ a:focus-visible {
   padding-top: 0.5rem;
 }
 
-/* Hero variant: the single big lead story on the homepage */
 .news-card--hero {
   border: none;
 }
@@ -825,7 +785,6 @@ a:focus-visible {
   color: #d6d6da;
 }
 
-/* Compact variant used in dense sidebars/grids */
 .news-card--compact .news-card__body {
   padding: 0.7rem 0.85rem 0.9rem;
 }
@@ -834,7 +793,6 @@ a:focus-visible {
   font-size: 0.92rem;
 }
 
-/* --- Pagination --- */
 .pagination {
   display: flex;
   align-items: center;
@@ -852,7 +810,6 @@ a:focus-visible {
   color: var(--np-muted);
 }
 
-/* Numbered "most read" list */
 .popular-news__list {
   list-style: none;
   margin: 0;
@@ -927,10 +884,6 @@ a:focus-visible {
     font-size: 1.25rem;
   }
 }
-
-/* =====================================================================
-   News detail page
-   ===================================================================== */
 
 .news-detail {
   max-width: 760px;
@@ -1046,7 +999,6 @@ a:focus-visible {
   margin: 0 0 1.3em;
 }
 
-/* Simple lightbox overlay for gallery images */
 .gallery-lightbox {
   position: fixed;
   inset: 0;
@@ -1078,16 +1030,11 @@ a:focus-visible {
   font-size: 1.1rem;
 }
 
-/* --- Related / Featured / Popular sections --- */
 .related-news,
 .featured-news,
 .popular-news {
   margin: 2.5rem 0;
 }
-
-/* =====================================================================
-   Auth pages
-   ===================================================================== */
 
 .auth-page {
   max-width: 420px;
@@ -1139,10 +1086,6 @@ a:focus-visible {
   max-width: 720px;
   margin: 0 auto;
 }
-
-/* =====================================================================
-   Shared states (loading / error / empty / success)
-   ===================================================================== */
 
 .state-message {
   text-align: center;
@@ -1200,7 +1143,6 @@ a:focus-visible {
   gap: 0.75rem;
 }
 
-/* --- Status Badge --- */
 .status-badge {
   display: inline-block;
   padding: 0.15rem 0.6rem;
@@ -1228,10 +1170,6 @@ a:focus-visible {
   background: var(--np-brand-tint);
   color: var(--np-brand);
 }
-
-/* =====================================================================
-   Account page
-   ===================================================================== */
 
 .account-page {
   max-width: 600px;
@@ -1268,10 +1206,6 @@ a:focus-visible {
   margin: 0;
   font-weight: 600;
 }
-
-/* =====================================================================
-   Share / Reactions / Bookmark
-   ===================================================================== */
 
 .share-button {
   background: var(--np-surface);
@@ -1310,10 +1244,6 @@ a:focus-visible {
   color: var(--np-gold);
   background: var(--np-gold-tint);
 }
-
-/* =====================================================================
-   Comments
-   ===================================================================== */
 
 .comments-section {
   margin-top: 2.5rem;
@@ -1378,10 +1308,6 @@ a:focus-visible {
   font-size: 0.9rem;
 }
 
-/* =====================================================================
-   Notifications
-   ===================================================================== */
-
 .notification-item {
   display: flex;
   justify-content: space-between;
@@ -1401,12 +1327,6 @@ a:focus-visible {
   align-items: flex-end;
   white-space: nowrap;
 }
-
-/* =====================================================================
-   Admin Panel (kept intentionally close to the original structure —
-   this redesign brief targets the public site; admin is re-tokenised
-   only so colors/radii stay consistent, no layout changes)
-   ===================================================================== */
 
 .admin-shell {
   min-height: 100vh;
@@ -1764,10 +1684,6 @@ a:focus-visible {
   object-fit: cover;
   border-radius: 4px;
 }
-
-/* =====================================================================
-   Responsive breakpoints (global)
-   ===================================================================== */
 
 @media (max-width: 900px) {
   .admin-shell {

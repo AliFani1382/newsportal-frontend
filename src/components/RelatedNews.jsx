@@ -13,7 +13,6 @@ export default function RelatedNews({ newsId }) {
         if (res.isSuccess) setItems(res.data);
       })
       .catch(() => {
-        /* بخش خبرهای مرتبط اختیاری است؛ خطا نباید کل صفحه را خراب کند */
       })
       .finally(() => setIsLoading(false));
   }, [newsId]);

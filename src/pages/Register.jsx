@@ -21,7 +21,6 @@ export default function Register() {
 
     try {
       await register(fullName, username, email, password);
-      // ثبت‌نام موفق -> کاربر را به صفحه ورود می‌فرستیم تا وارد شود
       navigate("/login", { replace: true });
     } catch (err) {
       setError(err.response ? extractErrorMessage(err) : err.message);

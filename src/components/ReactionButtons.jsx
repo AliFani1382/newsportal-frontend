@@ -22,7 +22,6 @@ export default function ReactionButtons({ newsId }) {
         if (res.isSuccess) setData(res.data);
       })
       .catch(() => {
-        /* خطای دریافت واکنش نباید کل صفحه را از کار بیندازد */
       })
       .finally(() => setIsLoading(false));
   }, [newsId, isAuthenticated]);
@@ -34,7 +33,6 @@ export default function ReactionButtons({ newsId }) {
       const res = await setReaction(newsId, type);
       if (res.isSuccess) setData(res.data);
     } catch {
-      /* خطای موقت شبکه؛ کاربر می‌تواند دوباره کلیک کند */
     } finally {
       setIsSaving(false);
     }

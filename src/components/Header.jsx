@@ -24,7 +24,6 @@ export default function Header() {
         if (res.isSuccess) setUnreadCount(res.data.count);
       })
       .catch(() => {
-        /* عدم دریافت تعداد اعلان‌های نخوانده نباید هدر را مختل کند */
       });
   }, [isAuthenticated]);
 
@@ -34,11 +33,9 @@ export default function Header() {
         if (res.isSuccess) setCategories(res.data);
       })
       .catch(() => {
-        /* نبود لیست دسته‌ها نباید کل هدر را مختل کند */
       });
   }, []);
 
-  // بستن منوی موبایل با هر تغییر مسیر
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);

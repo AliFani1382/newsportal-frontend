@@ -16,8 +16,6 @@ export default function ForgotPassword() {
 
     try {
       await requestPasswordReset(email.trim());
-      // صرف‌نظر از این‌که ایمیل واقعاً وجود دارد یا نه، همیشه پیام یکسان
-      // نمایش داده می‌شود تا از افشای وجود/عدم‌وجود حساب کاربری جلوگیری شود.
       setSuccess(true);
     } catch (err) {
       setError(extractErrorMessage(err));

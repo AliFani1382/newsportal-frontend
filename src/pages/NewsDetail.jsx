@@ -35,7 +35,6 @@ export default function NewsDetail() {
       .then((res) => {
         if (res.isSuccess) {
           setNews(res.data);
-          // شمارش بازدید — اختیاری است، خطای آن نباید نمایش خبر را مختل کند
           incrementViewCount(res.data.id).catch(() => {});
         } else {
           setError(res.message || "خبر یافت نشد.");
@@ -45,7 +44,6 @@ export default function NewsDetail() {
       .finally(() => setIsLoading(false));
   }, [slug]);
 
-  // بستن Lightbox با کلید Esc
   useEffect(() => {
     if (!lightboxImage) return;
     const handleKeyDown = (e) => {

@@ -106,7 +106,6 @@ export function AuthProvider({ children }) {
     const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
     if (refreshToken) {
       authApi.logout(refreshToken).catch(() => {
-        /* حتی اگر ابطال سمت سرور fail شود، سشن لوکال باید پاک شود */
       });
     }
     clearSession();
