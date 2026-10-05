@@ -144,6 +144,10 @@ Users can:
 * Explore news based on different classifications
 * View featured, popular, and related content
 
+### Home Page
+
+![NewsPortal Home Page](screenshots/Screenshots.home.png)
+
 ### News Submission
 
 Authenticated users can submit news through the frontend.
