@@ -115,6 +115,12 @@ The frontend integrates with the backend authentication system using JWT access 
 * Authentication state management
 * Automatic handling of expired authentication sessions
 
+### Login & Registration
+
+![Login](screenshots/login.png)
+
+![Register](screenshots/register.png)
+
 ### Protected Routes
 
 Authenticated user pages are protected through a dedicated `ProtectedRoute` component.
@@ -147,6 +153,32 @@ Users can:
 ### Home Page
 
 ![NewsPortal Home Page](screenshots/Screenshots.home.png)
+
+The latest news grid with the most viewed sidebar:
+
+![Latest News](screenshots/home-latest-news.png)
+
+Filtering news by category, city, or keyword:
+
+![Category Filter](screenshots/home-category-filter.png)
+
+### News Details
+
+Each article shows its category, author, publish and update dates, share and bookmark actions, and the main image.
+
+![News Details](screenshots/news-detail.png)
+
+Articles can include an image gallery, tags, like and dislike reactions, and a related news section. Bookmarked articles are highlighted for the signed-in user.
+
+![News Gallery and Reactions](screenshots/news-detail-gallery-reactions.png)
+
+![News Bookmark and Tags](screenshots/news-detail-bookmark-tags.png)
+
+### Comments
+
+Authenticated users can read and submit comments on each article.
+
+![Comments](screenshots/comments.png)
 
 ### News Submission
 
@@ -214,6 +246,28 @@ The frontend includes a dedicated administrative interface for users with the Ad
 Administrative routes are separated from regular user routes and protected through the frontend routing layer.
 
 The backend remains responsible for enforcing the actual authorization rules.
+
+### Admin Panel Screenshots
+
+News management with publication status control (Draft, Pending Review, Published, Rejected):
+
+![Admin News Management](screenshots/admin-news-management.png)
+
+Creating and editing news:
+
+![Admin News Edit](screenshots/admin-news-edit.png)
+
+Category, tag, and city selection with multiple image upload:
+
+![Admin News Edit Media](screenshots/admin-news-edit-media.png)
+
+Category management:
+
+![Admin Categories](screenshots/admin-categories.png)
+
+User and role management:
+
+![Admin Users](screenshots/admin-users.png)
 
 ## 📡 API Communication
 
@@ -350,6 +404,25 @@ The UI includes dedicated layouts for:
 * Notifications
 * Bookmarks
 * Administrative dashboard
+
+### Mobile View
+
+The interface is fully responsive and adapts to small screens with a collapsible navigation menu and a horizontally scrollable category bar.
+
+<table>
+  <tr>
+    <td align="center"><img src="screenshots/mobile-home.png" width="200" alt="Mobile Home"><br><sub>Home</sub></td>
+    <td align="center"><img src="screenshots/mobile-latest-news-filters.png" width="200" alt="Mobile Latest News"><br><sub>Latest news & filters</sub></td>
+    <td align="center"><img src="screenshots/mobile-menu.png" width="200" alt="Mobile Menu"><br><sub>Navigation menu</sub></td>
+    <td align="center"><img src="screenshots/mobile-news-detail.png" width="200" alt="Mobile News Details"><br><sub>News details</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/mobile-news-detail-reactions.png" width="200" alt="Mobile News Reactions"><br><sub>Content & reactions</sub></td>
+    <td align="center"><img src="screenshots/mobile-comments.png" width="200" alt="Mobile Comments"><br><sub>Comments</sub></td>
+    <td align="center"><img src="screenshots/mobile-login.png" width="200" alt="Mobile Login"><br><sub>Login</sub></td>
+    <td align="center"><img src="screenshots/mobile-register.png" width="200" alt="Mobile Register"><br><sub>Register</sub></td>
+  </tr>
+</table>
 
 ## 🔗 Related Repository
 
