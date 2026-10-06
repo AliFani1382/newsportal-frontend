@@ -117,9 +117,16 @@ The frontend integrates with the backend authentication system using JWT access 
 
 ### Login & Registration
 
+<details>
+<summary><b>Login & registration screenshots</b></summary>
+
+<br>
+
 ![Login](screenshots/login.png)
 
 ![Register](screenshots/register.png)
+
+</details>
 
 ### Protected Routes
 
@@ -154,7 +161,12 @@ Users can:
 
 ![NewsPortal Home Page](screenshots/Screenshots.home.png)
 
-The latest news grid with the most viewed sidebar:
+<details>
+<summary><b>More home page screenshots</b></summary>
+
+<br>
+
+Latest news grid with the most viewed sidebar:
 
 ![Latest News](screenshots/home-latest-news.png)
 
@@ -162,23 +174,34 @@ Filtering news by category, city, or keyword:
 
 ![Category Filter](screenshots/home-category-filter.png)
 
+</details>
+
 ### News Details
 
-Each article shows its category, author, publish and update dates, share and bookmark actions, and the main image.
+Each article shows its category, author, publish and update dates, share and bookmark actions, an image gallery, tags, reactions, related news, and comments.
+
+<details>
+<summary><b>News details & comments screenshots</b></summary>
+
+<br>
+
+Article header and main image:
 
 ![News Details](screenshots/news-detail.png)
 
-Articles can include an image gallery, tags, like and dislike reactions, and a related news section. Bookmarked articles are highlighted for the signed-in user.
+Image gallery, reactions, and related news:
 
 ![News Gallery and Reactions](screenshots/news-detail-gallery-reactions.png)
 
+Tags and bookmark state:
+
 ![News Bookmark and Tags](screenshots/news-detail-bookmark-tags.png)
 
-### Comments
-
-Authenticated users can read and submit comments on each article.
+Comments section:
 
 ![Comments](screenshots/comments.png)
+
+</details>
 
 ### News Submission
 
@@ -198,6 +221,21 @@ Published
 
 This allows regular users to contribute content while administrators maintain control over publication.
 
+<details>
+<summary><b>News submission screenshots</b></summary>
+
+<br>
+
+Submission form:
+
+![News Submission Form](screenshots/news-submit-form.png)
+
+Category, city, tags, and image selection:
+
+![News Submission Options](screenshots/news-submit-options.png)
+
+</details>
+
 ## 👤 User Account
 
 Authenticated users can access their personal account and manage profile-related information.
@@ -211,6 +249,17 @@ Available functionality includes:
 * Access bookmarks
 * View notifications
 
+<details>
+<summary><b>User account screenshots</b></summary>
+
+<br>
+
+![Account Profile](screenshots/account-profile.png)
+
+![Change Password](screenshots/account-change-password.png)
+
+</details>
+
 ## 🔔 Notifications
 
 The frontend integrates with the backend notification system.
@@ -222,11 +271,29 @@ Users can:
 * Mark individual notifications as read
 * Mark all notifications as read
 
+<details>
+<summary><b>Notifications screenshot</b></summary>
+
+<br>
+
+![Notifications](screenshots/notifications.png)
+
+</details>
+
 ## 🔖 Bookmarks
 
 Authenticated users can save news articles for later access.
 
 The frontend provides a dedicated bookmarks page for managing saved articles.
+
+<details>
+<summary><b>Bookmarks screenshot</b></summary>
+
+<br>
+
+![Bookmarks](screenshots/bookmarks.png)
+
+</details>
 
 ## 🛡️ Admin Panel
 
@@ -249,6 +316,15 @@ The backend remains responsible for enforcing the actual authorization rules.
 
 ### Admin Panel Screenshots
 
+<details>
+<summary><b>Show admin panel screenshots</b></summary>
+
+<br>
+
+Dashboard:
+
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
 News management with publication status control (Draft, Pending Review, Published, Rejected):
 
 ![Admin News Management](screenshots/admin-news-management.png)
@@ -265,9 +341,15 @@ Category management:
 
 ![Admin Categories](screenshots/admin-categories.png)
 
+Comment moderation:
+
+![Admin Comments](screenshots/admin-comments.png)
+
 User and role management:
 
 ![Admin Users](screenshots/admin-users.png)
+
+</details>
 
 ## 📡 API Communication
 
@@ -409,6 +491,11 @@ The UI includes dedicated layouts for:
 
 The interface is fully responsive and adapts to small screens with a collapsible navigation menu and a horizontally scrollable category bar.
 
+<details>
+<summary><b>Show mobile screenshots</b></summary>
+
+<br>
+
 <table>
   <tr>
     <td align="center"><img src="screenshots/mobile-home.png" width="200" alt="Mobile Home"><br><sub>Home</sub></td>
@@ -423,6 +510,8 @@ The interface is fully responsive and adapts to small screens with a collapsible
     <td align="center"><img src="screenshots/mobile-register.png" width="200" alt="Mobile Register"><br><sub>Register</sub></td>
   </tr>
 </table>
+
+</details>
 
 ## 🔗 Related Repository
 
